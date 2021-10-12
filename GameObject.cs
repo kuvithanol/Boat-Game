@@ -16,8 +16,14 @@ namespace boatgame
 
         public virtual void Update(float deltaSeconds)
         {
-            
+            foreach(GameObject obj in Game1.iGameObjects)
+            {
+
+            }
         }
+
+
+
 
         public Vector2 posCoord;
 
@@ -25,6 +31,6 @@ namespace boatgame
 
         public float posAngle;
 
-
+        public List<Hitzone> hitzones = new List<Hitzone>();
     }
 }

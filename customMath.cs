@@ -17,4 +17,27 @@ namespace boatgame
             return (float)Math.Atan2(vector.Y, vector.X);
         }
     }
+
+    public class Hitzone
+    {
+        public Hitzone(float rad, Vector2 pos)
+        {
+            radius = rad;
+            position = pos;
+        }
+        float radius;
+        public Vector2 position;
+
+        public bool isColliding(Hitzone other)
+        {
+            float dist = Vector2.Distance(position, other.position);
+
+            float totalRad = radius + other.radius;
+
+            if (totalRad <= dist)
+            return true;
+            else return false;
+        }
+    }
+
 }

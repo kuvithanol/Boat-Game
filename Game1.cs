@@ -26,6 +26,7 @@ namespace boatgame
 
         public static Texture2D ball;
         public static Texture2D boat;
+
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
@@ -34,16 +35,18 @@ namespace boatgame
             // TODO: use this.Content to load your game content here
         }
 
-        List<GameObject> gameObjects = new List<GameObject>();
+        private static List<GameObject> gameObjects = new List<GameObject>();
+
+        internal static List<GameObject> iGameObjects { get => gameObjects; set => gameObjects = value; }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.N)) gameObjects.Add(new boatClass(new Vector2(100, 100), 0));
+            if (Keyboard.GetState().IsKeyDown(Keys.N)) iGameObjects.Add(new boatClass(new Vector2(100, 100), 0));
 
-            foreach(GameObject obj in gameObjects)
+            foreach(GameObject obj in iGameObjects)
             {
                 obj.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds/1000);
             }
@@ -59,11 +62,11 @@ namespace boatgame
             SpriteBatch batch = new SpriteBatch(GraphicsDevice);
             batch.Begin();
 
-            foreach(GameObject obj in gameObjects)
+            foreach(GameObject obj in iGameObjects)
             {
                 if (obj.texture != null)
                 {
-                    batch.Draw(obj.texture, obj.posCoord, null, Color.White, obj.posAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(5,5), SpriteEffects.None, 1);
+                    batch.Draw(obj.texture, obj.posCoord, null, Color.White, obj.posAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
                     //if(obj is boatclass boat)
                     //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);             ^ this fucking sucks, add to customMath
                 }
