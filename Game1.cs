@@ -23,7 +23,14 @@ namespace boatgame
 
             base.Initialize();
 
-            iGameObjects.Add(new boatClass(new Vector2(100, 100), 0));
+            //boatClass boat = new boatClass(new Vector2(500, 100), MathHelper.Pi);
+            //boat.hitzones.Add(new Hitzone(25, boat.posCoord));
+
+            //iGameObjects.Add(boat);
+
+            //shit doesnt work wtf??? ^ ^ ^
+
+            iGameObjects.Add(new boatClass(new Vector2(500, 100), MathHelper.Pi));
         }
 
         public static Texture2D ball;

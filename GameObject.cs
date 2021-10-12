@@ -18,6 +18,9 @@ namespace boatgame
 
         public Vector2 posCoord;
 
+        /// <summary>
+        ///  we measure angles in radians here dipshit
+        /// </summary>
         public float posAngle;
     }
 }

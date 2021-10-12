@@ -5,7 +5,7 @@ using System.Text;
 
 namespace boatgame
 {
-    static class customMath
+    static class CustomMath
     {
         public static Vector2 AngleToVector(float angle)
         {
