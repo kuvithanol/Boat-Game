@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace boatgame
 {
-    class boatClass : GameObject
+    class boatClass : PhysicalGameObject
     {
         public boatClass(Vector2 position, float angle) : base(position, angle)
         {
@@ -20,12 +20,8 @@ namespace boatgame
 
             Vector2 lastPos = posCoord;
 
-            if (Keyboard.GetState().IsKeyDown(Keys.W))
-                momentum = Vector2.Lerp(momentum, customMath.AngleToVector(posAngle)*2, 0.01f);
-            else
-                momentum = Vector2.Lerp(momentum, new Vector2(0, 0), 0.025f);
-
-
+            if (Keyboard.GetState().IsKeyDown(Keys.W))  momentum = Vector2.Lerp(momentum, customMath.AngleToVector(posAngle)*speed, 0.01f);
+            else momentum = Vector2.Lerp(momentum, new Vector2(0, 0), 0.025f);
 
             if (Keyboard.GetState().IsKeyDown(Keys.A))
                 posAngle += 0.02f;
@@ -41,6 +37,15 @@ namespace boatgame
                 hitzone.position += deltaPos;
             }
         }
+
+        public override void Collide(PhysicalGameObject otherObject)
+        {
+            base.Collide(otherObject);
+
+
+        }
+
+        public float speed = 3f;
 
         public Vector2 momentum = new Vector2(0, 0);
     }

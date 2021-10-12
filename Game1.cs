@@ -22,6 +22,8 @@ namespace boatgame
             // TODO: Add your initialization logic here
 
             base.Initialize();
+
+            iGameObjects.Add(new boatClass(new Vector2(100, 100), 0));
         }
 
         public static Texture2D ball;
@@ -44,7 +46,6 @@ namespace boatgame
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-            if (Keyboard.GetState().IsKeyDown(Keys.N)) iGameObjects.Add(new boatClass(new Vector2(100, 100), 0));
 
             foreach(GameObject obj in iGameObjects)
             {

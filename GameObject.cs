@@ -8,29 +8,16 @@ namespace boatgame
 {
     class GameObject
     {
-        public GameObject(Vector2 coord, float angle)
-        {
-            posCoord = coord;
-            posAngle = angle;
-        }
-
         public virtual void Update(float deltaSeconds)
         {
-            foreach(GameObject obj in Game1.iGameObjects)
-            {
 
-            }
         }
 
-
-
-
-        public Vector2 posCoord;
 
         public Texture2D texture;
 
-        public float posAngle;
+        public Vector2 posCoord;
 
-        public List<Hitzone> hitzones = new List<Hitzone>();
+        public float posAngle;
     }
 }
