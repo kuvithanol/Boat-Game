@@ -39,11 +39,9 @@ namespace boatgame
 
         public virtual void Collide(PhysicalGameObject otherObject)
         {
-
+                
         }
 
-
-        public bool isSolid = true;
 
         public Vector2 momentum = new Vector2(0, 0);
 

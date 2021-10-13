@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace boatgame
 {
@@ -23,12 +24,12 @@ namespace boatgame
 
             base.Initialize();
 
-            //boatClass boat = new boatClass(new Vector2(500, 100), MathHelper.Pi);
-            //boat.hitzones.Add(new Hitzone(25, boat.posCoord));
 
-            //iGameObjects.Add(boat);
+            iGameObjects.Add(new boatClass(new Vector2(500, 50), MathHelper.Pi));
+            boatClass boat = (boatClass)iGameObjects.Last();
+            boat.hitzones.Add(new Hitzone(40, boat.posCoord));
 
-            //shit doesnt work wtf??? ^ ^ ^
+            //shit does work wtf??? ^ ^ ^
 
             iGameObjects.Add(new boatClass(new Vector2(500, 100), MathHelper.Pi));
         }
@@ -76,7 +77,14 @@ namespace boatgame
                 {
                     batch.Draw(obj.texture, obj.posCoord, null, Color.White, obj.posAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
                     //if(obj is boatclass boat)
-                    //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);             ^ this fucking sucks, add to customMath
+                    //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);     
+                    if(obj is PhysicalGameObject physical)
+                    {
+                        foreach (Hitzone hitzone in physical.hitzones)
+                        {
+                            batch.Draw(ball, hitzone.position, null, Color.White, obj.posAngle, ball.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
+                        }
+                    }
                 }
             }
 

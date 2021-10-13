@@ -12,7 +12,7 @@ namespace boatgame
             radius = rad;
             position = pos;
         }
-        float radius;
+        public float radius;
         public Vector2 position;
 
         public static bool Colliding(Hitzone self, Hitzone other)

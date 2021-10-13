@@ -12,6 +12,10 @@ namespace boatgame
         {
             texture = Game1.boat;
             hitzones.Add(new Hitzone(25, position));
+
+            hitzones.Add(new Hitzone(25, position + new Vector2(25,0)));
+
+            hitzones.Add(new Hitzone(25, position + new Vector2(-25,0)));
         }
 
         public override void Update(float deltaSeconds)
