@@ -12,6 +12,7 @@ namespace boatgame
             base.positionalMomentum = momentum;
             damage = Damage;
             pierce = Pierce;
+            texture = MasterGame.debugCircle;
         }
 
         int pierce;

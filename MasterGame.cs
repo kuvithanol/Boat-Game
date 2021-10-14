@@ -6,17 +6,20 @@ using System.Linq;
 
 namespace boatgame
 {
-    public class Game1 : Game
+    public class MasterGame : Game
     {
         private GraphicsDeviceManager _graphics;
         private SpriteBatch _spriteBatch;
 
-        public Game1()
+        public MasterGame()
         {
             _graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            masterGame = this;
         }
+
+        static MasterGame masterGame;
 
         protected override void Initialize()
         {
@@ -46,15 +49,25 @@ namespace boatgame
 
         private static List<GameObject> gameObjects = new List<GameObject>();
 
+        private static List<GameObject> slatedForDeletion = new List<GameObject>();
+
+        private static List<GameObject> slatedForCreation = new List<GameObject>();
+
         internal static List<GameObject> iGameObjects { get => gameObjects; set => gameObjects = value; }
+        internal static List<GameObject> iSlatedForDeletion { get => slatedForDeletion; set => slatedForDeletion = value; }
+        internal static List<GameObject> iSlatedForCreation { get => slatedForCreation; set => slatedForCreation = value; }
 
         protected override void Update(GameTime gameTime)
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
 
-
-            foreach(GameObject obj in iGameObjects)
+            foreach (GameObject obj in iSlatedForCreation)
+            {
+                iGameObjects.Add(obj);
+            }
+            iSlatedForCreation.Clear();
+            foreach (GameObject obj in iGameObjects)
             {
                 obj.Update((float)gameTime.ElapsedGameTime.TotalMilliseconds/1000);
             }

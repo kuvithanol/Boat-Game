@@ -27,7 +27,7 @@ namespace boatgame
                 angularMomentum = MathHelper.Lerp(angularMomentum, -deltaTurnSpeed, 0.06f);
             else angularMomentum = MathHelper.Lerp(angularMomentum, 0, 0.08f);
 
-            Game1.iGameObjects.Add(new Projectile(positionalCoord, positionalAngle, 1, 1, positionalMomentum, this));
+            MasterGame.iSlatedForCreation.Add(new Projectile(positionalCoord, positionalAngle, 1, 1, CustomMath.AngleToVector(positionalAngle), this));
         }
     }
 }

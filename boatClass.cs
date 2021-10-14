@@ -10,7 +10,7 @@ namespace boatgame
     {
         public Boat(Vector2 Position, float Angle) : base(Position, Angle)
         {
-            texture = Game1.boat;
+            texture = MasterGame.boat;
 
             hitzones.Add(new Hitzone(50, Position));
 

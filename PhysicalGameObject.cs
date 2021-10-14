@@ -20,7 +20,7 @@ namespace boatgame
 
             foreach (Hitzone hitzone in hitzones) //for each of my own hitzones...
             {
-                foreach (PhysicalGameObject physicalGameObject in Game1.iGameObjects) //for every object's...
+                foreach (PhysicalGameObject physicalGameObject in MasterGame.iGameObjects) //for every object's...
                 {
                     foreach (Hitzone otherZone in physicalGameObject.hitzones) //every hitzone...
                     {
@@ -57,7 +57,7 @@ namespace boatgame
 
         public virtual void Collide(PhysicalGameObject otherObject)
         {
-            System.Diagnostics.Debug.WriteLine("collision");
+
         }
 
         public float angularMomentum = 0f;
