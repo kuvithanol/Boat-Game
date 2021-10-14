@@ -11,45 +11,47 @@ namespace boatgame
         public boatClass(Vector2 position, float angle) : base(position, angle)
         {
             texture = Game1.boat;
-            hitzones.Add(new Hitzone(25, position));
 
             hitzones.Add(new Hitzone(25, position + new Vector2(25,0)));
 
             hitzones.Add(new Hitzone(25, position + new Vector2(-25,0)));
+
+            foreach(Hitzone hitzone in hitzones)
+            {
+                hitzone.position -= positionalCoord;
+                CustomMath.V2Rotate(ref hitzone.position, angle);
+                hitzone.position += positionalCoord;
+            }
         }
 
         public override void Update(float deltaSeconds)
         {
 
-            Vector2 lastPos = posCoord;
-
-            if (Keyboard.GetState().IsKeyDown(Keys.W))  momentum = Vector2.Lerp(momentum, CustomMath.AngleToVector(posAngle)*speed, 0.05f);
-            else momentum = Vector2.Lerp(momentum, new Vector2(0, 0), 0.08f);
-
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
-                posAngle += 1f * MathF.PI * deltaSeconds;
-            if (Keyboard.GetState().IsKeyDown(Keys.D))
-                posAngle -= 1f * MathF.PI * deltaSeconds;
-
-            base.posCoord += momentum;
-
-            Vector2 deltaPos = Vector2.Subtract(posCoord, lastPos);
-            
-            foreach(Hitzone hitzone in hitzones)
-            {
-                hitzone.position += deltaPos;
-            }
-
             base.Update(deltaSeconds);
+
+            deltaSpeed = deltaSeconds * speed;
+
+            deltaTurnSpeed = deltaSeconds * turnSpeed;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.W)) positionalMomentum = Vector2.Lerp(positionalMomentum, CustomMath.AngleToVector(positionalAngle) * deltaSpeed, 0.06f);
+            else if (Keyboard.GetState().IsKeyDown(Keys.S)) positionalMomentum = Vector2.Lerp(positionalMomentum, CustomMath.AngleToVector(positionalAngle) * -deltaSpeed, 0.06f);
+            else positionalMomentum = Vector2.Lerp(positionalMomentum, new Vector2(0, 0), 0.08f);
+
+            if (Keyboard.GetState().IsKeyDown(Keys.D) && !Keyboard.GetState().IsKeyDown(Keys.A))
+                angularMomentum = MathHelper.Lerp(angularMomentum, deltaTurnSpeed, 0.06f);
+            else if (Keyboard.GetState().IsKeyDown(Keys.A) && !Keyboard.GetState().IsKeyDown(Keys.D))
+                angularMomentum = MathHelper.Lerp(angularMomentum, -deltaTurnSpeed, 0.06f);
+            else angularMomentum = MathHelper.Lerp(angularMomentum, 0, 0.08f);
         }
 
         public override void Collide(PhysicalGameObject otherObject)
         {
             base.Collide(otherObject);
-
-
         }
 
-        public float speed = 3f;
+
+
+        protected float turnSpeed = 5f; protected float deltaTurnSpeed = 0;
+        public float speed = 150f; protected float deltaSpeed = 0;
     }
 }

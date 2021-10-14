@@ -10,8 +10,8 @@ namespace boatgame
     {
         public PhysicalGameObject(Vector2 coord, float angle)
         {
-            posCoord = coord;
-            posAngle = angle;
+            positionalCoord = coord;
+            positionalAngle = angle;
         }
 
         public override void Update(float deltaSeconds)
@@ -31,19 +31,38 @@ namespace boatgame
                             //   bad physical collision code ^
 
                             Collide(physicalGameObject);
+                            break;
                         }
                     }
                 }
             }
+
+            positionalAngle += angularMomentum;
+
+            foreach (Hitzone hitzone in hitzones)
+            {
+                hitzone.position -= positionalCoord;
+            }
+
+            positionalCoord += positionalMomentum;
+
+            foreach (Hitzone hitzone in hitzones)
+            {
+                CustomMath.V2Rotate(ref hitzone.position, angularMomentum);
+                hitzone.position += positionalCoord;
+            }
         }
+
+
 
         public virtual void Collide(PhysicalGameObject otherObject)
         {
-                
+            System.Diagnostics.Debug.WriteLine("collision");
         }
 
+        public float angularMomentum = 0f;
 
-        public Vector2 momentum = new Vector2(0, 0);
+        public Vector2 positionalMomentum = new Vector2(0, 0);
 
         public List<Hitzone> hitzones = new List<Hitzone>();
     }

@@ -16,11 +16,11 @@ namespace boatgame
 
         public Texture2D texture;
 
-        public Vector2 posCoord;
+        public Vector2 positionalCoord;
 
         /// <summary>
         ///  we measure angles in radians here dipshit
         /// </summary>
-        public float posAngle;
+        public float positionalAngle;
     }
 }

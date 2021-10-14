@@ -26,12 +26,11 @@ namespace boatgame
 
 
             iGameObjects.Add(new boatClass(new Vector2(500, 50), MathHelper.Pi));
+            iGameObjects.Add(new boatClass(new Vector2(500, 50), MathHelper.Pi/2));
+
             boatClass boat = (boatClass)iGameObjects.Last();
-            boat.hitzones.Add(new Hitzone(40, boat.posCoord));
 
             //shit does work wtf??? ^ ^ ^
-
-            iGameObjects.Add(new boatClass(new Vector2(500, 100), MathHelper.Pi));
         }
 
         public static Texture2D ball;
@@ -75,14 +74,14 @@ namespace boatgame
             {
                 if (obj.texture != null)
                 {
-                    batch.Draw(obj.texture, obj.posCoord, null, Color.White, obj.posAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
+                    batch.Draw(obj.texture, obj.positionalCoord, null, Color.White, obj.positionalAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
                     //if(obj is boatclass boat)
                     //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);     
                     if(obj is PhysicalGameObject physical)
                     {
                         foreach (Hitzone hitzone in physical.hitzones)
                         {
-                            batch.Draw(ball, hitzone.position, null, Color.White, obj.posAngle, ball.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
+                            batch.Draw(ball, hitzone.position, null, Color.White, obj.positionalAngle, ball.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
                         }
                     }
                 }
