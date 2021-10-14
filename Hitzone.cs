@@ -7,10 +7,10 @@ namespace boatgame
 {
     public class Hitzone
     {
-        public Hitzone(float rad, Vector2 pos)
+        public Hitzone(float Radius, Vector2 Position)
         {
-            radius = rad;
-            position = pos;
+            radius = Radius;
+            position = Position;
         }
         public float radius;
         public Vector2 position;
@@ -21,7 +21,7 @@ namespace boatgame
 
             float totalRad = self.radius + other.radius;
 
-            if (totalRad - dist > 0) return true; else return false;
+            if (dist - totalRad/2 <= 0) return true; else return false;
         }
     }
 }

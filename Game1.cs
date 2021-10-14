@@ -25,21 +25,21 @@ namespace boatgame
             base.Initialize();
 
 
-            iGameObjects.Add(new boatClass(new Vector2(500, 50), MathHelper.Pi));
-            iGameObjects.Add(new boatClass(new Vector2(500, 50), MathHelper.Pi/2));
+            iGameObjects.Add(new Player(new Vector2(500, 50), MathHelper.Pi));
+            iGameObjects.Add(new Boat(new Vector2(500, 50), MathHelper.Pi/2));
 
-            boatClass boat = (boatClass)iGameObjects.Last();
+            Boat boat = (Boat)iGameObjects.Last();
 
             //shit does work wtf??? ^ ^ ^
         }
 
-        public static Texture2D ball;
+        public static Texture2D debugCircle;
         public static Texture2D boat;
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
-            ball = this.Content.Load<Texture2D>("ball");
+            debugCircle = this.Content.Load<Texture2D>("debugCircle");
             boat = this.Content.Load<Texture2D>("boat");
             // TODO: use this.Content to load your game content here
         }
@@ -75,13 +75,13 @@ namespace boatgame
                 if (obj.texture != null)
                 {
                     batch.Draw(obj.texture, obj.positionalCoord, null, Color.White, obj.positionalAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
-                    //if(obj is boatclass boat)
+                    //if(obj is Boat boat)
                     //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);     
                     if(obj is PhysicalGameObject physical)
                     {
                         foreach (Hitzone hitzone in physical.hitzones)
                         {
-                            batch.Draw(ball, hitzone.position, null, Color.White, obj.positionalAngle, ball.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
+                            batch.Draw(debugCircle, hitzone.position, null, Color.White, obj.positionalAngle, debugCircle.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
                         }
                     }
                 }

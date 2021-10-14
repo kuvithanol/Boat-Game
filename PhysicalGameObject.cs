@@ -8,10 +8,10 @@ namespace boatgame
 {
     class PhysicalGameObject : GameObject
     {
-        public PhysicalGameObject(Vector2 coord, float angle)
+        public PhysicalGameObject(Vector2 Coord, float Angle)
         {
-            positionalCoord = coord;
-            positionalAngle = angle;
+            positionalCoord = Coord;
+            positionalAngle = Angle;
         }
 
         public override void Update(float deltaSeconds)
@@ -24,7 +24,7 @@ namespace boatgame
                 {
                     foreach (Hitzone otherZone in physicalGameObject.hitzones) //every hitzone...
                     {
-                        if (hitzone != otherZone && Hitzone.Colliding(hitzone, otherZone)) //if it isnt mine and it is touching...
+                        if (!hitzones.Contains(otherZone) && Hitzone.Colliding(hitzone, otherZone)) //if it isnt mine and it is touching...
                         {
                             //momentum = Vector2.Lerp(momentum, physicalGameObject.momentum, 0.5f);
                             //momentum += Vector2.Subtract(hitzone.position, otherZone.position) * 0.002f;
@@ -37,7 +37,6 @@ namespace boatgame
                 }
             }
 
-            positionalAngle += angularMomentum;
 
             foreach (Hitzone hitzone in hitzones)
             {
@@ -45,6 +44,7 @@ namespace boatgame
             }
 
             positionalCoord += positionalMomentum;
+            positionalAngle += angularMomentum;
 
             foreach (Hitzone hitzone in hitzones)
             {
