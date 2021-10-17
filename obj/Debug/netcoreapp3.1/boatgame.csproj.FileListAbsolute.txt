@@ -75,3 +75,4 @@ C:\Users\ness from undertale\Desktop\Repos\Boat-Game\obj\Debug\netcoreapp3.1\boa
 C:\Users\ness from undertale\Desktop\Repos\Boat-Game\obj\Debug\netcoreapp3.1\boatgame.csproj.CopyComplete
 C:\Users\ness from undertale\Desktop\Repos\Boat-Game\obj\Debug\netcoreapp3.1\boatgame.genruntimeconfig.cache
 C:\Users\ness from undertale\Desktop\Repos\Boat-Game\bin\Debug\netcoreapp3.1\Content\debugCircle.xnb
+C:\Users\ness from undertale\Desktop\Repos\Boat-Game\bin\Debug\netcoreapp3.1\Content\boat_sheet.xnb

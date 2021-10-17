@@ -27,9 +27,7 @@ namespace boatgame
 
             base.Initialize();
 
-
-            iGameObjects.Add(new Player(new Vector2(500, 50), MathHelper.Pi));
-            iGameObjects.Add(new Boat(new Vector2(500, 50), MathHelper.Pi/2));
+            iGameObjects.Add(new Player(new Vector2(500, 50), +MathHelper.Pi/2*3));
 
             Boat boat = (Boat)iGameObjects.Last();
 
@@ -38,12 +36,14 @@ namespace boatgame
 
         public static Texture2D debugCircle;
         public static Texture2D boat;
+        public static Texture2D boatSheet;
 
         protected override void LoadContent()
         {
             _spriteBatch = new SpriteBatch(GraphicsDevice);
             debugCircle = this.Content.Load<Texture2D>("debugCircle");
             boat = this.Content.Load<Texture2D>("boat");
+            boatSheet = this.Content.Load<Texture2D>("boat_sheet");
             // TODO: use this.Content to load your game content here
         }
 
@@ -85,19 +85,27 @@ namespace boatgame
 
             foreach(GameObject obj in iGameObjects)
             {
-                if (obj.texture != null)
+                if (obj.spriteSheet != null)
                 {
-                    batch.Draw(obj.texture, obj.positionalCoord, null, Color.White, obj.positionalAngle, obj.texture.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
+                    if(obj.sourceRect == null)
+                    batch.Draw(obj.spriteSheet, obj.positionalCoord, obj.sourceRect, Color.White, obj.positionalAngle, obj.spriteSheet.Bounds.Center.ToVector2(), new Vector2(1,1), SpriteEffects.None, 1);
+                    else
+                    batch.Draw(obj.spriteSheet, obj.positionalCoord, obj.sourceRect, Color.White, 0, obj.sourceRect.Value.Center.ToVector2() - new Vector2(obj.spriteIndex * obj.spriteWidth, 0), new Vector2(1, 1), obj.flipSprite ? SpriteEffects.FlipHorizontally : SpriteEffects.None, 1);
                     //if(obj is Boat boat)
                     //batch.DrawString(Spri, boat.momentum.ToString(), new Vector2(0, 0), Color.Red);     
-                    if(obj is PhysicalGameObject physical)
-                    {
-                        foreach (Hitzone hitzone in physical.hitzones)
-                        {
-                            batch.Draw(debugCircle, hitzone.position, null, Color.White, obj.positionalAngle, debugCircle.Bounds.Center.ToVector2(), hitzone.radius/100, SpriteEffects.None, 0);
-                        }
-                    }
                 }
+
+
+
+
+
+                //if (obj is PhysicalGameObject physical)
+                //{
+                //    foreach (Hitzone hitzone in physical.hitzones)
+                //    {
+                //        batch.Draw(debugCircle, hitzone.position, null, Color.White, obj.positionalAngle, debugCircle.Bounds.Center.ToVector2(), hitzone.radius / 100, SpriteEffects.None, 0);
+                //    }
+                //}
             }
 
             batch.End();

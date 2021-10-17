@@ -26,10 +26,6 @@ namespace boatgame
                     {
                         if (!hitzones.Contains(otherZone) && Hitzone.Colliding(hitzone, otherZone)) //if it isnt mine and it is touching...
                         {
-                            //momentum = Vector2.Lerp(momentum, physicalGameObject.momentum, 0.5f);
-                            //momentum += Vector2.Subtract(hitzone.position, otherZone.position) * 0.002f;
-                            //   bad physical collision code ^
-
                             Collide(physicalGameObject);
                             break;
                         }
@@ -51,9 +47,16 @@ namespace boatgame
                 CustomMath.V2Rotate(ref hitzone.position, angularMomentum);
                 hitzone.position += positionalCoord;
             }
+
+            if(positionalAngle < 0)
+            {
+                positionalAngle += MathHelper.Pi * 2;
+            }
+            else if (positionalAngle > MathHelper.Pi * 2)
+            {
+                positionalAngle -= MathHelper.Pi * 2;
+            }
         }
-
-
 
         public virtual void Collide(PhysicalGameObject otherObject)
         {

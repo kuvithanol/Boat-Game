@@ -10,7 +10,10 @@ namespace boatgame
     {
         public Player(Vector2 Position, float Angle) : base(Position, Angle)
         {
-            
+            hitzones.Add(new Hitzone(50, Position));
+            spriteSheet = MasterGame.boatSheet;
+            spriteWidth = spriteSheet.Height;
+            spriteSheetLength = spriteSheet.Width / spriteSheet.Height;
         }
 
         public override void Update(float deltaSeconds)
@@ -27,7 +30,36 @@ namespace boatgame
                 angularMomentum = MathHelper.Lerp(angularMomentum, -deltaTurnSpeed, 0.06f);
             else angularMomentum = MathHelper.Lerp(angularMomentum, 0, 0.08f);
 
-            MasterGame.iSlatedForCreation.Add(new Projectile(positionalCoord, positionalAngle, 1, 1, CustomMath.AngleToVector(positionalAngle), this));
+            fireDelay += deltaSeconds;
+            if(fireDelay > fireRate) fireDelay = fireRate;
+
+            if (Keyboard.GetState().IsKeyDown(Keys.K))
+            {
+                if (fireDelay == fireRate)
+                {
+                    Attack();
+                    fireDelay = 0;
+                }
+            }
+        }
+
+        public override void Attack()
+        {
+            base.Attack();
+        }
+
+        protected override void updateSprite()
+        {
+            spriteIndex = (int)((positionalAngle / MathHelper.Pi + .5f) % 2 * spriteSheetLength) % spriteSheetLength;
+
+            flipSprite = (positionalAngle / MathHelper.Pi + .5f) % 2 > 1;
+
+            if (flipSprite)
+            {
+                spriteIndex = (spriteSheetLength-1) - spriteIndex;
+            }
+
+            sourceRect = new Rectangle(new Point(0 + spriteIndex*spriteWidth, 0), new Point(spriteWidth, spriteWidth));
         }
     }
 }
