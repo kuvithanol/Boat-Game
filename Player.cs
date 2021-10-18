@@ -14,6 +14,7 @@ namespace boatgame
             spriteSheet = MasterGame.boatSheet;
             spriteWidth = spriteSheet.Height;
             spriteSheetLength = spriteSheet.Width / spriteSheet.Height;
+            speed *= 2;
         }
 
         public override void Update(float deltaSeconds)
