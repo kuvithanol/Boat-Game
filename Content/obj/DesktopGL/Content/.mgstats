@@ -1,4 +1,5 @@
 Source File,Dest File,Processor Type,Content Type,Source File Size,Dest File Size,Build Seconds
-"C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/boat.png","C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/boat.xnb","TextureProcessor","Texture2DContent",397,11085,0.1229654
-"C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/boat_sheet.png","C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/boat_sheet.xnb","TextureProcessor","Texture2DContent",917,280085,0.146349
-"C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/debugCircle.png","C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/debugCircle.xnb","TextureProcessor","Texture2DContent",5207,40085,0.1498054
+"C:/Users/22bek/Desktop/Repos/Boat-Game/Content/basicProjectile.png","C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/basicProjectile.xnb","TextureProcessor","Texture2DContent",1910,15085,0.2617808
+"C:/Users/22bek/Desktop/Repos/Boat-Game/Content/boat.png","C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/boat.xnb","TextureProcessor","Texture2DContent",397,11085,0.3721377
+"C:/Users/22bek/Desktop/Repos/Boat-Game/Content/boat_sheet.png","C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/boat_sheet.xnb","TextureProcessor","Texture2DContent",917,70085,0.2357783
+"C:/Users/22bek/Desktop/Repos/Boat-Game/Content/debugCircle.png","C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/debugCircle.xnb","TextureProcessor","Texture2DContent",5207,40085,0.0047137

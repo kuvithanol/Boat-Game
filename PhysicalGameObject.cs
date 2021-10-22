@@ -16,6 +16,9 @@ namespace boatgame
 
         public override void Update(float deltaSeconds)
         {
+            spriteWidth = spriteSheet.Height;
+            spriteSheetLength = spriteSheet.Width / spriteSheet.Height;
+
             base.Update(deltaSeconds);
 
             foreach (Hitzone hitzone in hitzones) //for each of my own hitzones...
@@ -58,9 +61,24 @@ namespace boatgame
             }
         }
 
-        public virtual void Collide(PhysicalGameObject otherObject)
+        protected virtual void Collide(PhysicalGameObject otherObject)
         {
 
+        }
+
+        protected override void updateSprite()
+        {
+            base.updateSprite();
+            spriteIndex = (int)((positionalAngle / MathHelper.Pi + .5f) % 2 * spriteSheetLength) % spriteSheetLength;
+
+            flipSprite = (positionalAngle / MathHelper.Pi + .5f) % 2 > 1;
+
+            if (flipSprite)
+            {
+                spriteIndex = (spriteSheetLength-1) - spriteIndex;
+            }
+
+            sourceRect = new Rectangle(new Point(0 + spriteIndex*spriteWidth, 0), new Point(spriteWidth, spriteWidth));
         }
 
         public float angularMomentum = 0f;

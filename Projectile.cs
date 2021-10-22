@@ -7,15 +7,17 @@ namespace boatgame
 {
     class Projectile : PhysicalGameObject
     {
-        public Projectile(Vector2 Coord, float Angle, int Pierce, float Damage, Vector2 Momentum, float Radius, Boat Source) : base(Coord, Angle)
+        public Projectile(Vector2 Coord, float Angle, int Pierce, float Damage, Vector2 Momentum, float Radius, Boat Source, float Mass) : base(Coord, Angle)
         {
-
             MasterGame.iSlatedForCreation.Add(this);
-            base.positionalMomentum = Momentum;
+            positionalMomentum = Momentum;
+            positionalAngle = Angle;
             damage = Damage;
             pierce = Pierce;
             radius = Radius;
-            spriteSheet = null;
+            spriteSheet = MasterGame.projectile;
+            source = Source;
+            mass = Mass;
 
             hitzones.Add(new Hitzone(50, Coord));
         }
@@ -34,5 +36,7 @@ namespace boatgame
         float radius;
         int pierce;
         float damage;
+        public float mass;
+        Boat source;
     }
 }

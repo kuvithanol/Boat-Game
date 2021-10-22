@@ -10,9 +10,11 @@ namespace boatgame
     {
         public Boat(Vector2 Position, float Angle) : base(Position, Angle)
         {
-            spriteSheet = MasterGame.boat;
+            spriteSheet = MasterGame.boatSheet;
+            spriteWidth = spriteSheet.Height;
+            spriteSheetLength = spriteSheet.Width / spriteSheet.Height;
 
-            foreach(Hitzone hitzone in hitzones)//=========================== \/ \/ \/
+            foreach (Hitzone hitzone in hitzones)//=========================== \/ \/ \/
             {
                 hitzone.position -= positionalCoord;
                 CustomMath.V2Rotate(ref hitzone.position, Angle);
@@ -30,18 +32,26 @@ namespace boatgame
 
         }
 
-        public override void Collide(PhysicalGameObject otherObject)
+        protected override void Collide(PhysicalGameObject otherObject)
         {
             base.Collide(otherObject);
+            if (otherObject is Projectile projectile)
+            {
+
+            }
         }
 
-        public virtual void Attack()
+        protected virtual void hitBy(Projectile projectile)
         {
-            new Projectile(positionalCoord, positionalAngle, pierce, projectileDamage, CustomMath.AngleToVector(positionalAngle), 10, this);
-            System.Diagnostics.Debug.WriteLine("shoot");
+
         }
 
-        protected float projectileDamage = 1f; protected float collisionDamage = 1f; protected int pierce = 1;
+        protected virtual void Attack(float angle)
+        {
+
+        }
+
+        protected float projectileDamage = 1f; protected float collisionDamage = 1f; protected int pierce = 1; protected float projectileSpeed = 1f;
         protected float fireRate = 1f; protected float fireDelay = 0;
         protected float turnSpeed = 5f; protected float deltaTurnSpeed = 0;
         public float speed = 150f; protected float deltaSpeed = 0;

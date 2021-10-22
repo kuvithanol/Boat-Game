@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <SourceFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/boat_sheet.png</SourceFile>
-  <SourceTime>2021-10-21T20:59:31.3964312-05:00</SourceTime>
-  <DestFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/boat_sheet.xnb</DestFile>
-  <DestTime>2021-10-21T20:59:34.2406442-05:00</DestTime>
+  <SourceFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/basicProjectile.png</SourceFile>
+  <SourceTime>2021-10-21T20:58:56.9722699-05:00</SourceTime>
+  <DestFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/Content/basicProjectile.xnb</DestFile>
+  <DestTime>2021-10-21T20:59:02.3952707-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2020-08-10T11:17:54-05:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

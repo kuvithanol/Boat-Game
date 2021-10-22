@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/boat.png</SourceFile>
-  <SourceTime>2021-10-13T17:17:58.4067855-05:00</SourceTime>
-  <DestFile>C:/Users/ness from undertale/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/boat.xnb</DestFile>
-  <DestTime>2021-10-17T00:32:54.4007582-05:00</DestTime>
+  <SourceFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/boat.png</SourceFile>
+  <SourceTime>2021-10-19T07:49:01.6753799-05:00</SourceTime>
+  <DestFile>C:/Users/22bek/Desktop/Repos/Boat-Game/Content/bin/DesktopGL/boat.xnb</DestFile>
+  <DestTime>2021-10-21T20:50:51.3241858-05:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2018-12-08T10:35:54-06:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
